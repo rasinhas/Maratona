@@ -6,6 +6,7 @@ using namespace std;
 
 int a, b, n, x[500], y[500];
 
+//FIXME - Acho q essa questao n foi terminada
 void borda(int x1, int y1, int x2, int y2, int minx, int miny, int maxx, int maxy)
 {
     int l1, l2, i, minx2, miny2, maxx2, maxy2;

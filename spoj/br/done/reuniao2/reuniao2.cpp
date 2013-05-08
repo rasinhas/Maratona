@@ -11,6 +11,7 @@
 
 using namespace std;
 
+// n dijkstras
 int peso[110][110], d[110], grafo[110][110], grau[110];
 int vis[110];
 int mai, ret;
