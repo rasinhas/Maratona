@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#script to test files from: http://olimpiada.ic.unicamp.br/passadas
+#script by jccarvalhosa
+
+#############################
+#       USAGE               #
+# 1- ./test dirname exe     #
+# 2- ./test dirname         #
+#############################
+
+DIR=~/Downloads/$1
+if [ -z "$2" ]; then EXE="a.out"; else EXE="$2"; fi
+for T in $(ls $DIR); do
+    for IN in $(ls $DIR/$T | grep in); do
+        echo -n "$T: $IN -> "
+        OUT=$(echo $IN | sed 's/in/out/')
+        DIFF=$(diff -by $DIR/$T/$OUT <(./$EXE < $DIR/$T/$IN))
+        if [ $? -eq 0 ]; then echo 'OK' ; else echo "$DIFF" ; fi
+    done
+done

@@ -2,22 +2,5 @@
 
 FILENAME=$1
 
-if [ -z $FILENAME ]; then
-    echo 'Syntax error. Specify a filename.'
-    echo 'Try `./generate filename`.'
-else
-    EXTENSION=$(echo $FILENAME | cut -d. -f2)
-    if [ -z $EXTENSION ]; then
-        echo 'Error. No Extension specified for file.'
-    elif [ $EXTENSION == $FILENAME ]; then
-        echo 'Error. No Extension specified for file.'
-    elif [ $EXTENSION == 'c' ]; then
-        cp template.c $FILENAME
-    elif [ $EXTENSION == 'cpp' ]; then
-        cp template.cpp $FILENAME
-    else
-        echo 'Try using c or cpp.'
-    fi 
-    vim $FILENAME
-fi
-
+cp template.cpp $FILENAME
+vim $FILENAME
