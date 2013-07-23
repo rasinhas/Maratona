@@ -11,14 +11,10 @@ ll inv[111111];
 ll b, p, l, n;
 
 ll fexp(ll i, ll e) {
-    ll ret = 1;
-    while(e)
-    {
-        if (e%2 == 1) ret = ((long long)ret * i)%p;
-        i = ((long long)i*i)%p;
-        e /= 2;
-    }
-    return ret;
+    if(e == 0) return 1;
+    if(e == 1) return i;
+    if(e%2 == 0) return fexp((i*i)%p,e/2);
+    else return (i*fexp(i,e-1))%p;
 }
 
 void init() {for(int i=0;i<111111;i++) t[i] = 0;}
