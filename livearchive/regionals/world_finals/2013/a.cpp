@@ -29,30 +29,34 @@ int main()
 {
     int n;
     string s;
-    cin >> n;
-    for(int i=0;i<n;i++)
+    while(scanf("%d", &n) != EOF)
     {
-        cin >> s;
-        for(int j=0;j<4;j++)
+        ok = 0;
+        memset(vis,0,sizeof(vis));
+        memset(adj,0,sizeof(adj));
+        for(int i=0;i<n;i++)
         {
-            if(s[2*j] == '0') continue;
-            int l = 2*(s[2*j] - 'A') + (s[2*j+1] == '+' ? 0 : 1);
-            for(int k=j+1;k<4;k++)
+            cin >> s;
+            for(int j=0;j<4;j++)
             {
-                if(s[2*k] == '0') continue;
-                int l2 = 2*(s[2*k] - 'A') + (s[2*k+1] == '+' ? 0 : 1);
-                adj[l][l2] = adj[l2][l] = 1;
+                if(s[2*j] == '0') continue;
+                int l = 2*(s[2*j] - 'A') + (s[2*j+1] == '+' ? 0 : 1);
+                for(int k=j+1;k<4;k++)
+                {
+                    if(s[2*k] == '0') continue;
+                    int l2 = 2*(s[2*k] - 'A') + (s[2*k+1] == '+' ? 0 : 1);
+                    adj[l][l2] = adj[l2][l] = 1;
+                }
             }
         }
+        for(int i=0;i<26;i++)
+        {
+            memset(vis,0,sizeof(vis));
+            o = 2*i+1;
+            dfs(2*i);
+            if(ok) break;
+        }
+        cout << (ok ? "unbounded" : "bounded") << endl;
     }
-    for(int i=0;i<26;i++)
-    {
-        memset(vis,0,sizeof(vis));
-        o = 2*i+1;
-        dfs(2*i);
-        //ok = vis[2*i]&vis[2*i+1];
-        if(ok) break;
-    }
-    cout << (ok ? "unbounded" : "bounded") << endl;
     return 0;
 }
