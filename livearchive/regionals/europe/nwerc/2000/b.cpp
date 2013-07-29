@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// a[2*symb*maxn]
 int a[100];
 string seq;
 int n, k, symb=2;
