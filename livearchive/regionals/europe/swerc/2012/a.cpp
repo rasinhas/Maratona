@@ -20,19 +20,13 @@ int bfs(int p)
     {
         v = q.front().first;
         pi = q.front().second;
-        // pq aqui funciona?
         vis[v] = vis[pi]+1;
         q.pop();
         for(int i=0;i<adj[v].size();i++)
         {
             u = adj[v][i];
             if(vis[u] && u != pi) return vis[u]+vis[v]-1;
-            if(!vis[u])
-            {
-                // e aqui não?
-                //vis[u] = vis[v]+1;
-                q.push(make_pair(u,v));
-            }
+            if(!vis[u]) q.push(make_pair(u,v));
         }
     }
     return INF;

@@ -8,9 +8,9 @@
 
 using namespace std;
 
-int grid[110][110], lgrid[5000][100], egrid[5000][5000];
-bool adj[5000][5000];
-int vis[5000], pai[5000];
+int grid[111][111], lgrid[3111][111], egrid[3111][3111];
+bool adj[3111][3111];
+int vis[5555], pai[5555];
 int l, c, y, x;
 
 //expandir linhas
@@ -120,7 +120,6 @@ int main()
         expandl();
         c = 0;
         expandc();
-        //grid montado//
         for(i=0;i<l+c+2;i++) memset(adj[i],0,(l+c+2)*sizeof(bool));
         for(i=0;i<l;i++)
         {
@@ -131,35 +130,7 @@ int main()
                 if(egrid[i][j] == 1) adj[row(i)][col(j)] = 1;
             }
         }
-        //grafo montado//
         printf("%d\n", fluxo());
-        //falta fluxo//
-        /*
-        for(i=0;i<l+c+2;i++)
-        {
-            for(j=0;j<c+l+2;j++) printf("%3d", adj[i][j]);
-            printf("\n");
-        }
-        for(i=0;i<y;i++)
-        {
-            for(j=0;j<x;j++) printf("%3d", grid[i][j]);
-            printf("\n");
-        }
-        printf("\n");
-        for(i=0;i<l;i++)
-        {
-            for(j=0;j<c;j++) printf("%3d", lgrid[i][j]);
-            printf("\n");
-        }
-        printf("\n");
-        printf("\n\n");
-        for(i=0;i<l;i++)
-        {
-            for(j=0;j<c;j++) printf("%3d", egrid[i][j]);
-            printf("\n");
-        }
-        printf("\n\n");
-        */
     }
     return 0;
 }
