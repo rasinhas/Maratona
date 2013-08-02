@@ -1,80 +1,44 @@
-#include <stdio.h>
 #include <iostream>
-#include <algorithm>
+#include <cstdio>
 #include <vector>
-#include <utility>
+#include <cstring>
 
 using namespace std;
 
-vector<int> pos;
-vector<pair<int, int> > c;
+int vis[1111][1111];
+int c[2222], n;
+vector <int> mi;
+
+int go(int m, int l, int bx)
+{
+    if(vis[m][l]) return 0;
+    if(bx == n) return 1;
+    vis[m][l] = 1;
+    if(l >= c[bx] && go(m,l-c[bx],bx+1)) return 1;
+    if(m >= c[bx] && go(m-c[bx],l,bx+1))
+    {
+        mi.push_back(bx);
+        return 1;
+    }
+    return 0;
+}
 
 int main()
 {
-    int n, m, l, i, num, flag;
-    while(scanf("%d %d", &m, &l) && (m || l))
+    int m, l;
+    while((cin>>m>>l) && (m+l))
     {
-        scanf("%d", &n);
-        pos.clear();
-        c.clear();
-        for(i=0; i<n; i++)
+        cin >> n;
+        mi.clear();
+        memset(vis,0,sizeof(vis));
+        for(int i=0;i<n;i++) cin >> c[i];
+        if(!go(m,l,0)) cout << "Impossible to distribute" << endl;
+        else 
         {
-            scanf("%d", &num);    
-            c.push_back(make_pair(num, i));
-        }
-        sort(c.begin(), c.end());
-        flag=0;
-        for(i=n-1; i>=0; i--)
-        {
-            if(m<=l)
-            {
-                if(m>=c[i].first)
-                {
-                    pos.push_back(c[i].second);
-                    m-=c[i].first;
-                }
-                else
-                {
-                    if(l>=c[i].first)
-                    {
-                        l-=c[i].first;
-                    }
-                    else
-                    {
-                        flag=1;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                if(l>=c[i].first)
-                {
-                    l-=c[i].first;
-                }
-                else
-                {
-                    if(m>=c[i].first)
-                    {
-                        pos.push_back(c[i].second);
-                        m-=c[i].first;
-                    }
-                    else
-                    {
-                        flag=1;
-                        break;
-                    }
-                }
-            }
-        }
-        if(flag) printf("Impossible to distribute\n");
-        else
-        {
-            printf("%d", pos.size());
-            sort(pos.begin(), pos.end());
-            for(i=0;  i<pos.size(); i++) printf(" %d", pos[i]+1);
-            printf("\n");
+            cout << mi.size();
+            for(int i=((int)mi.size()-1);i>=0;i--) printf(" %d", mi[i]+1);
+            cout << endl;
         }
     }
-    return 0;    
+    return 0;
 }
