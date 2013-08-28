@@ -30,12 +30,13 @@ int main()
                 double xc = circ[j].second.first;
                 double yc = circ[j].second.second;
                 double rc = circ[j].first;
-                if(xc*xc >= (xc*xc - rc*rc + (yc-i)*(yc-i)))
+                if(rc*rc >= (xc-i)*(xc-i))
                 {
-                    int x1 = max(1, (int)((xc - sqrt(xc*xc - (xc*xc - rc*rc + (yc-i)*(yc-i))))+1-EPS));
-                    int x2 = min(m, (int)((xc + sqrt(xc*xc - (xc*xc - rc*rc + (yc-i)*(yc-i))))));
-                    ptos[a++] = mp(x1,-1);
-                    ptos[a++] = mp(x2,1);
+                    double delta = sqrt(rc*rc - (xc-i)*(xc-i));
+                    int y1 = (int)max(1.0, (yc - delta + 1 - EPS));
+                    int y2 = (int)min((double)m, (yc + delta));
+                    ptos[a++] = mp(y1,-1);
+                    ptos[a++] = mp(y2,1);
                 }
             }
             sort(ptos,ptos+a);
