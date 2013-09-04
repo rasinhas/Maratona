@@ -1,4 +1,5 @@
 Maratona
 ========
 
-Códigos de treino para a Maratona de Programação (ICPC).
+Problem solutions for algorithm problems from various online judges.
+
