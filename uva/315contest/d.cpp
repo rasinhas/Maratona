@@ -6,9 +6,9 @@ using namespace std;
 int main()
 {
     int n;
-    long long pa[120];
+    long long pa[222];
     pa[0] = 0;
-    for(int i=0;i<101;i++) pa[i] = pa[i-1]+i;
+    for(int i=1;i<222;i++) pa[i] = pa[i-1]+i;
     while(cin >> n && n)
     {
         long long r = 0;
