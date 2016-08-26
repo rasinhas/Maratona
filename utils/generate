@@ -1,6 +1,0 @@
-#!/bin/bash
-
-FILENAME=$1
-
-cp template.cpp $FILENAME
-vim $FILENAME

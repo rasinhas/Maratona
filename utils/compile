@@ -1,6 +1,0 @@
-#!/bin/bash
-
-FILE=$1
-EXE=$(echo $1 | cut -d. -f1)
-
-g++ -o $EXE $FILE -lm -Wall -Wshadow
